@@ -25,8 +25,8 @@ setup(
     name=package_name,
     version=version,
     description='Re-signing iOS apps without Apple tools',
-    url='https://github.com/saucelabs/{}'.format(package_name),
-    download_url='https://github.com/saucelabs/{}/tarball/v{}'.format(package_name, version),
+    url='https://github.com/darmie/isign',
+    download_url='https://github.com/darmie/isign/tarball/v1.6.17',
     author='Sauce Labs',
     author_email='dev@saucelabs.com',
     classifiers=[
