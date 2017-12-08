@@ -26,7 +26,7 @@ setup(
     version=version,
     description='Re-signing iOS apps without Apple tools',
     url='https://github.com/darmie/isign',
-    download_url='https://github.com/darmie/isign/tarball/v1.6.17',
+    download_url='https://github.com/darmie/isign/tarball/v1.6.18',
     author='Sauce Labs',
     author_email='dev@saucelabs.com',
     classifiers=[
@@ -42,7 +42,7 @@ setup(
         'biplist==0.9',
         'construct==2.5.2',
         'memoizer==0.0.1',
-        'pyOpenSSL==0.15.1'
+        'pyOpenSSL==17.5.0'
     ],
     package_data={
         package: ['apple_credentials/applecerts.pem',
