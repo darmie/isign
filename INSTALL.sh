@@ -254,12 +254,37 @@ linux_setup() {
     sudo apt-get install -y libimobiledevice-utils
 }
 
+cygwin_setup() {
+	rm -rf tmp
+
+	mkdir -p tmp
+	cd tmp
+	git clone https://github.com/libimobiledevice/libusbmuxd.git
+	cd libusbmuxd
+	cp ../../ltmain.sh ltmain.sh
+	PKG_CONFIG_PATH=/usr/local/lib/pkgconfig ./autogen.sh && make && make install
+
+	cd ../../tmp
+	git clone https://github.com/libimobiledevice/libimobiledevice.git
+	cd libimobiledevice
+	cp ../../ltmain.sh ltmain.sh
+	./autogen.sh --without-cython && make && make install
+	
+	cd ../../tmp
+	git clone https://github.com/darmie/ideviceinstaller.git
+	cd ideviceinstaller
+	cp ../../ltmain.sh ltmain.sh
+	./autogen.sh && make CFLAGS='-D_GNU_SOURCE' && make install	
+}
+
 
 unamestr=`uname`
 if [[ "$unamestr" == 'Darwin' ]]; then
     mac_setup
 elif [[ "$unamestr" == 'Linux' ]]; then
     linux_setup
+elif [[ "$unamestr" == 'CYGWIN_NT-10.0' ]]; then
+	cygwin_setup
 else
     warn "Sorry, I don't know how to install on $unamestr.";
     exit 1;
